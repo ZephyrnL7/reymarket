@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1677d2">
+    <title>RikiMarket — Produk Digital</title>
+    <link rel="stylesheet" href="/design/style.css">
+    <link rel="stylesheet" href="/design/responsive-fullwidth.css">
+    <link rel="stylesheet" href="/design/products-modern.css">
+    <link rel="stylesheet" href="/app.css">
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body data-page="store">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="RikiMarket home">
+        <span class="brand-mark">R</span>
+        <span>RikiMarket<small>Malaysia digital store</small></span>
+      </a>
+      <nav class="topnav" aria-label="Main navigation">
+        <button class="nav-link active" type="button" data-view="store">Kedai</button>
+        <button class="nav-link" type="button" data-view="deposit">Tambah nilai</button>
+        <button class="nav-link" type="button" data-view="orders">Aktiviti</button>
+        <button class="nav-link" type="button" data-view="profile">Akaun</button>
+      </nav>
+      <div class="top-actions">
+        <span class="user-chip" id="user-chip">Tetamu</span>
+        <button class="button button-outline button-small" id="auth-open" type="button">Log masuk</button>
+        <button class="button button-quiet button-small hidden" id="logout-button" type="button">Log keluar</button>
+      </div>
+    </header>
+
+    <main class="site-main">
+      <section class="hero-panel">
+        <div class="hero-copy">
+          <span class="eyebrow">Ruang digital anda</span>
+          <h1>Semua keperluan digital,<br><em>mudah dan teratur.</em></h1>
+          <p>Terokai produk pilihan, tambah nilai melalui pindahan manual dan semak setiap transaksi dari satu tempat.</p>
+          <button class="button button-primary" type="button" data-view="store">Lihat produk <span aria-hidden="true">→</span></button>
+        </div>
+        <div class="balance-card">
+          <div class="balance-top"><span>Baki akaun</span><span class="balance-icon" aria-hidden="true">RM</span></div>
+          <strong id="balance-value">RM0.00</strong>
+          <span class="balance-caption" id="balance-caption">Log masuk untuk melihat baki anda</span>
+          <button class="balance-link" type="button" data-view="deposit">Tambah nilai <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="hero-orb hero-orb-one"></div>
+        <div class="hero-orb hero-orb-two"></div>
+      </section>
+
+      <div class="status-banner hidden" id="notice" role="status"></div>
+
+      <section class="view-panel" id="view-store">
+        <div class="section-heading">
+          <div><span class="eyebrow">Katalog</span><h2>Produk digital</h2></div>
+          <label class="filter-label">Kategori
+            <select id="category-filter">
+              <option value="">Semua produk</option>
+              <option value="panel_hosting">Panel hosting</option>
+              <option value="script_bot">Script bot</option>
+              <option value="vps">VPS</option>
+              <option value="game_topup">Game topup</option>
+              <option value="subdomain">Subdomain</option>
+              <option value="premium_app">Aplikasi premium</option>
+            </select>
+          </label>
+        </div>
+        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="view-panel hidden" id="view-deposit">
+        <div class="section-heading">
+          <div><span class="eyebrow">Pindahan manual</span><h2>Tambah nilai saldo</h2></div>
+        </div>
+        <div class="deposit-layout">
+          <div class="surface-card">
+            <div class="step-heading"><span class="step-number">1</span><div><h3>Cipta rujukan deposit</h3><p>Masukkan jumlah dan pilih kaedah pindahan.</p></div></div>
+            <form id="deposit-intent-form" class="form-stack">
+              <label>Jumlah (RM)
+                <input name="amount" type="number" min="1" max="1000000" step="0.01" placeholder="Contoh: 20.00" required>
+              </label>
+              <label>Kaedah pembayaran
+                <select name="method" required>
+                  <option value="tng_qr">Touch 'n Go eWallet</option>
+                  <option value="maybank">Maybank</option>
+                </select>
+              </label>
+              <button class="button button-primary" type="submit">Dapatkan kod rujukan</button>
+            </form>
+            <div id="deposit-next-step" class="deposit-next hidden">
+              <div class="reference-box"><span>Kod rujukan anda</span><strong id="deposit-reference"></strong><button class="text-button" id="copy-reference" type="button">Salin kod</button></div>
+              <p class="hint">Sertakan kod ini dalam catatan pindahan bank/eWallet. Selepas membuat pindahan, muat naik resit di bawah.</p>
+              <div class="payment-instructions" id="payment-instructions"></div>
+              <form id="receipt-form" class="form-stack">
+                <input type="hidden" name="deposit_request_id">
+                <label>Gambar resit (JPG, PNG atau WebP, maks. 5 MB)
+                  <input name="receipt" type="file" accept="image/jpeg,image/png,image/webp" required>
+                </label>
+                <button class="button button-primary" type="submit">Hantar resit untuk semakan</button>
+              </form>
+            </div>
+          </div>
+          <aside class="surface-card safety-note">
+            <span class="note-icon" aria-hidden="true">✓</span>
+            <h3>Semakan manual yang teliti</h3>
+            <p>Setiap resit dibandingkan dengan rekod bank sebelum saldo dikreditkan. Jangan hantar resit yang sama lebih daripada sekali.</p>
+            <p>Permintaan tanpa resit atau yang belum disemak akan luput selepas 24 jam.</p>
+          </aside>
+        </div>
+        <div class="surface-card history-card">
+          <div class="section-heading compact"><div><span class="eyebrow">Rekod</span><h3>Permintaan deposit</h3></div></div>
+          <div id="deposit-history" class="table-wrap"></div>
+        </div>
+      </section>
+
+      <section class="view-panel hidden" id="view-orders">
+        <div class="section-heading"><div><span class="eyebrow">Sejarah</span><h2>Aktiviti akaun</h2></div></div>
+        <div class="surface-card table-wrap" id="transaction-list"></div>
+      </section>
+
+      <section class="view-panel hidden" id="view-profile">
+        <div class="section-heading"><div><span class="eyebrow">Tetapan akaun</span><h2>Profil anda</h2></div></div>
+        <div class="surface-card profile-card">
+          <form id="profile-form" class="form-stack">
+            <label>Nama pengguna<input name="username" minlength="3" maxlength="32" required></label>
+            <label>E-mel<input name="email" type="email" disabled></label>
+            <label>Nombor telefon<input name="phone" type="tel" maxlength="30" placeholder="Pilihan"></label>
+            <button class="button button-primary" type="submit">Simpan perubahan</button>
+          </form>
+          <div class="account-meta" id="account-meta"></div>
+        </div>
+        <div class="surface-card notification-card"><h3>Pemberitahuan</h3><div id="notification-list"></div></div>
+      </section>
+    </main>
+
+    <dialog class="auth-dialog" id="auth-dialog">
+      <form method="dialog" class="dialog-close-form"><button class="dialog-close" aria-label="Tutup" value="close">×</button></form>
+      <span class="eyebrow">Selamat kembali</span>
+      <h2 id="auth-title">Log masuk</h2>
+      <div class="auth-tabs"><button type="button" class="active" data-auth-mode="login">Log masuk</button><button type="button" data-auth-mode="register">Daftar akaun</button></div>
+      <form id="auth-form" class="form-stack">
+        <label id="auth-username-wrap" class="hidden">Nama pengguna<input name="username" autocomplete="username" minlength="3" maxlength="32"></label>
+        <label id="auth-identifier-wrap">E-mel atau nama pengguna<input name="identifier" autocomplete="username" required></label>
+        <label id="auth-email-wrap" class="hidden">E-mel<input name="email" type="email" autocomplete="email"></label>
+        <label>Kata laluan<input name="password" type="password" autocomplete="current-password" minlength="12" maxlength="128" required></label>
+        <p class="form-hint" id="password-hint">Gunakan sekurang-kurangnya 12 aksara.</p>
+        <button class="button button-primary" type="submit" id="auth-submit">Log masuk</button>
+      </form>
+    </dialog>
+
+    <footer class="site-footer"><span>© RikiMarket</span><span>Harga dipaparkan dalam Ringgit Malaysia (MYR)</span><a href="/admin.html">Admin</a></footer>
+  </body>
+</html>

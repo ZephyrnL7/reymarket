@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1677d2">
+    <title>Admin — RikiMarket</title>
+    <link rel="stylesheet" href="/design/style.css">
+    <link rel="stylesheet" href="/design/responsive-fullwidth.css">
+    <link rel="stylesheet" href="/app.css">
+    <script type="module" src="/admin.js"></script>
+  </head>
+  <body data-page="admin">
+    <header class="topbar admin-topbar">
+      <a class="brand" href="/"><span class="brand-mark">R</span><span>RikiMarket<small>Admin console</small></span></a>
+      <div class="top-actions"><span class="user-chip" id="admin-identity">Admin</span><button class="button button-outline button-small hidden" id="admin-logout" type="button">Log keluar</button></div>
+    </header>
+    <main class="site-main admin-main">
+      <section class="admin-login surface-card" id="admin-login-panel">
+        <span class="eyebrow">Ruang terhad</span><h1>Log masuk pentadbir</h1>
+        <p>Sila gunakan akaun yang telah diberi peranan admin.</p>
+        <form id="admin-login-form" class="form-stack">
+          <label>E-mel atau nama pengguna<input name="identifier" autocomplete="username" required></label>
+          <label>Kata laluan<input name="password" type="password" autocomplete="current-password" required></label>
+          <button class="button button-primary" type="submit">Log masuk</button>
+        </form>
+        <div class="status-banner hidden" id="admin-login-notice" role="status"></div>
+      </section>
+
+      <section class="hidden" id="admin-console">
+        <div class="admin-heading"><div><span class="eyebrow">Kawalan platform</span><h1>Dashboard admin</h1></div><a class="button button-outline" href="/">Lihat kedai</a></div>
+        <div class="stats-grid" id="admin-stats"></div>
+        <div class="admin-tabs" role="tablist">
+          <button class="active" type="button" data-admin-view="deposits">Semakan deposit</button>
+          <button type="button" data-admin-view="products">Produk</button>
+          <button type="button" data-admin-view="users">Pengguna</button>
+        </div>
+        <div class="admin-view" id="admin-deposits-view">
+          <div class="section-heading"><div><span class="eyebrow">Perlu tindakan</span><h2>Permintaan pending</h2></div><button class="button button-outline button-small" type="button" id="refresh-deposits">Muat semula</button></div>
+          <div class="admin-list" id="admin-deposits"></div>
+        </div>
+        <div class="admin-view hidden" id="admin-products-view">
+          <div class="section-heading"><div><span class="eyebrow">Katalog</span><h2>Urus produk</h2></div><button class="button button-primary button-small" type="button" id="new-product">Tambah produk</button></div>
+          <form id="product-form" class="surface-card product-form hidden">
+            <input name="id" type="hidden">
+            <div class="form-grid">
+              <label>Nama produk<input name="name" required minlength="2" maxlength="120"></label>
+              <label>Kategori<select name="category" required>
+                <option value="panel_hosting">Panel hosting</option><option value="script_bot">Script bot</option><option value="vps">VPS</option><option value="game_topup">Game topup</option><option value="subdomain">Subdomain</option><option value="premium_app">Aplikasi premium</option>
+              </select></label>
+              <label>Harga (RM)<input name="price" type="number" min="0.01" step="0.01" required></label>
+              <label>Stok<input name="stock" type="number" min="0" step="1" required></label>
+              <label>Status<select name="status"><option value="available">Available</option><option value="unavailable">Unavailable</option></select></label>
+              <label class="wide-field">Penerangan<textarea name="description" rows="3" maxlength="2000"></textarea></label>
+              <label class="wide-field">Gambar produk (JPG, PNG atau WebP, maks. 5 MB)<input name="image" type="file" accept="image/jpeg,image/png,image/webp"></label>
+            </div>
+            <div class="form-actions"><button class="button button-primary" type="submit">Simpan produk</button><button class="button button-outline" id="cancel-product" type="button">Batal</button></div>
+          </form>
+          <div class="admin-list" id="admin-products"></div>
+        </div>
+        <div class="admin-view hidden" id="admin-users-view">
+          <div class="section-heading"><div><span class="eyebrow">Akaun</span><h2>Pengguna</h2></div></div>
+          <div class="surface-card table-wrap" id="admin-users"></div>
+        </div>
+        <div class="status-banner hidden" id="admin-notice" role="status"></div>
+      </section>
+    </main>
+    <footer class="site-footer"><span>RikiMarket Admin</span><span>Semua tindakan semakan direkodkan untuk audit.</span></footer>
+  </body>
+</html>
