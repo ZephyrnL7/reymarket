@@ -1,0 +1,143 @@
+
+/* Full-width responsive layout fix */
+html,body{width:100%;max-width:100%;margin:0!important;padding-left:0!important;padding-right:0!important;overflow-x:clip}
+body{min-width:0}
+.page-section{width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important}
+.page-section.active{min-height:calc(100vh - 70px)}
+/* Remove accidental fixed-width wrappers and preserve a small, consistent inner gutter. */
+.page-section > *{max-width:100%;min-width:0}
+.page-section .header-home,.page-section .header-solid,.page-section .sticky-nav-wrapper,
+.page-section .tab-solid-container{width:100%;max-width:none;margin-left:0;margin-right:0}
+.page-section img, .page-section video, .page-section iframe{max-width:100%}
+.page-section .product-container,.page-section .stats-container,
+.page-section .saldo-wrapper,.page-section .sticky-nav-wrapper,
+.page-section .tab-solid-container{min-width:0}
+@media(max-width:600px){
+ .page-section{padding-left:0!important;padding-right:0!important}
+ .page-section .header-home,.page-section .header-solid-flex{padding-left:clamp(14px,4vw,22px);padding-right:clamp(14px,4vw,22px)}
+ .page-section .product-container{width:100%;max-width:100%}
+}
+@media(min-width:601px){
+ .page-section{width:100%!important}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+/* =====================================================================
+   RESPONSIF SEMUA LAYAR - SELALU FULL SCREEN (dikendalikan app-detect.js lewat html[data-rm])
+   sm  (< 700px)      : HP, layout 1 kolom penuh
+   md  (700-1099px)   : tablet portrait / HP lipat -> grid 3-6 kolom
+   lg  (>= 1100px)    : tablet landscape / laptop   -> grid 4-8 kolom
+   xl  (>= 1500px)    : monitor lebar (mouse)       -> grid 6-10 kolom
+   Konten TIDAK lagi dibatasi/dipusatkan: selalu penuh kiri-kanan di semua layar,
+   dan halaman produk mengisi penuh sampai ke bawah (tanpa ruang kosong).
+   ===================================================================== */
+:root { --rm-content-w: 100vw; --rm-side-bg: transparent; }
+
+html[data-rm="md"] body .menu-grid-clean, html[data-rm="lg"] body .menu-grid-clean { grid-template-columns: repeat(6, 1fr); gap: 18px 12px; }
+html[data-rm="md"] body .product-grid-game { grid-template-columns: repeat(3, 1fr); }
+html[data-rm="md"] body .nk-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+html[data-rm="md"] body .nkd-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+html[data-rm="md"] body .page-section, html[data-rm="lg"] body .page-section { padding-left: 0 !important; padding-right: 0 !important; }
+html[data-rm="md"] body .header-home, html[data-rm="lg"] body .header-home,
+html[data-rm="md"] body .header-solid-flex, html[data-rm="lg"] body .header-solid-flex { padding-left: 24px; padding-right: 24px; }
+
+html[data-rm="lg"] body .menu-grid-clean { grid-template-columns: repeat(8, 1fr); }
+html[data-rm="lg"] body .product-grid-game { grid-template-columns: repeat(5, 1fr); }
+html[data-rm="lg"] body .nk-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+html[data-rm="lg"] body .nkd-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+/* menu bawah: ikut penuh lebar layar (sama seperti di HP) */
+
+/* Laptop / monitor (pakai mouse): tetap FULL SCREEN, tidak dipusatkan / dibatasi */
+@media (min-width: 900px) {
+  html body { max-width: none !important; margin-left: 0 !important; margin-right: 0 !important; box-shadow: none; min-height: 100vh; }
+  .banner-section { max-width: none !important; }
+}
+/* Monitor lebar: kolom grid ditambah supaya layar penuh terisi rapi */
+@media (min-width: 1500px) {
+  html body .menu-grid-clean { grid-template-columns: repeat(10, 1fr); }
+  html body .product-grid-game { grid-template-columns: repeat(6, 1fr); }
+  html body .nk-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  html body .nkd-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  html body :is(.page-section) .prod-grid, html body :is(.page-section) .product-grid-game { grid-template-columns: repeat(6, minmax(0, 1fr)) !important; }
+}
+
+/* Mode diperbesar otomatis (layar sentuh): koreksi satuan vh */
+html.rm-zoomed body .page-section.active { min-height: calc(100vh / var(--rm-zoom, 1) - 70px); }
+html.rm-zoomed body { overflow-x: hidden; }
+html.rm-zoomed body { min-height: calc(100vh / var(--rm-zoom, 1)); }
+
+
+/* =====================================================================
+   DI DALAM APK/PWA: fitur "Download APK" disembunyikan
+   (class .rm-app dipasang oleh app-detect.js)
+   ===================================================================== */
+html.rm-app #menuApk,
+html.rm-app #page-apk { display: none !important; }
+
+/* =====================================================================
+   HALAMAN DOWNLOAD APK (di dalam web): full layar kiri-kanan, tanpa celah
+   ===================================================================== */
+#page-apk .panel-hero { background-color: #1976D2; }
+#page-apk .panel-content { padding-left: 0 !important; padding-right: 0 !important; }
+#page-apk .step-box {
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  margin-bottom: 0;
+}
+#page-apk .step-box { padding: 28px clamp(16px, 4vw, 40px); }
+#page-apk .step-box .btn-pay-pro {
+  display: flex; box-sizing: border-box;
+  width: 100%; margin-left: 0; margin-right: 0;
+}
+
+/* =====================================================================
+   TOMBOL SUPPORT (CS melayang): selalu di atas menu bawah, tidak ketutup
+   ===================================================================== */
+.cs-float { z-index: 1002; bottom: calc(104px + env(safe-area-inset-bottom)); }
+.cs-panel { z-index: 1003; }
+@media (min-width: 768px) {
+  .cs-float { bottom: 112px; }
+}
+@media (max-height: 500px) {
+  .cs-float { bottom: calc(84px + env(safe-area-inset-bottom)); }
+}
+
+
+/* =====================================================================
+   HALAMAN PRODUK: ISI PENUH SAMPAI BAWAH (tanpa ruang kosong di layar lebar/tinggi)
+   Semua halaman yang punya .panel-content (panel, script, murid, sosmed, game, e-wallet,
+   subdomain, VPS, topup, pulsa, premium app, APK, nokos, dst) dijadikan kolom setinggi layar:
+   kartu terakhir (metode pembayaran) memanjang mengisi sisa tinggi, dan latar halaman
+   satu warna penuh, jadi tidak ada celah kosong di atas footer/menu bawah.
+   ===================================================================== */
+.page-section.active:has(> .panel-content) {
+  display: flex; flex-direction: column;
+  background: var(--bg-body);
+}
+.page-section.active:has(> .panel-content) > * { flex-shrink: 0; }
+.page-section.active > .panel-content {
+  flex: 1 0 auto; width: 100%;
+  display: flex; flex-direction: column;
+}
+.page-section.active > .panel-content > * { flex: 0 0 auto; }
+.page-section.active > .panel-content > .step-box:last-child { flex: 0 0 auto; margin-bottom: 0; } /* tidak lagi melar kosong ke bawah */
+.page-section.active > .panel-content > .step-box:last-child > :last-child { margin-bottom: 0; }
+
+/* Halaman lain (tanpa .panel-content) juga satu warna penuh, tanpa celah ke wallpaper */
+#page-stock-all-game.active, #page-gacha.active, #page-thr.active, #page-transaksi.active,
+#page-transaksi-detail.active, #page-rekap.active, #page-info.active, #page-order-sukses.active {
+  background: var(--bg-body);
+}
+
+/* Halaman dengan footer "Total Pembayaran": konten berhenti PAS di atas footer.
+   --rm-footer-h = tinggi footer asli (diukur app-detect.js). Padding body (ruang menu bawah) dihapus
+   karena menu bawah tidak tampil di halaman ini. */
+html.rm-has-footer body { padding-bottom: 0 !important; }
+html body .page-section.active:has(> .sticky-footer) {
+  padding-bottom: var(--rm-footer-h, 118px) !important;
+  min-height: calc(100vh / var(--rm-zoom, 1)) !important;
+}

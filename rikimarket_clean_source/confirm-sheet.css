@@ -1,0 +1,87 @@
+/* ===== POPUP KONFIRMASI PEMBELIAN (semua produk) =====
+   HP        : layar penuh (header, isi bisa digulir, total + tombol bayar selalu terlihat di bawah)
+   Tablet/PC : dialog di tengah, lebar nyaman dibaca
+   Diaktifkan oleh confirm-sheet.js (menambah class .cs-ov / .cs-enh), jadi popup lain tidak ikut berubah. */
+
+.confirm-modal-overlay.cs-ov.show { display: flex; align-items: stretch; justify-content: stretch; background: var(--bg-body); padding: 0; }
+.confirm-box-pro.cs-enh {
+  width: 100%; max-width: none; height: 100%; max-height: none !important; margin: 0;
+  border-radius: 0; box-shadow: none; overflow: hidden !important;
+  display: flex; flex-direction: column; background: var(--bg-body);
+  opacity: 0; transform: none; transition: opacity .12s linear;
+}
+.confirm-modal-overlay.cs-ov.show .confirm-box-pro.cs-enh { opacity: 1; transform: none; }
+.confirm-box-pro.cs-enh::before { display: none; }
+html.rm-app .confirm-box-pro.cs-enh { transition: none; transform: none; }
+
+/* ---- header ---- */
+.cs-enh > .confirm-pro-header {
+  flex: 0 0 auto; padding: calc(16px + env(safe-area-inset-top, 0px)) 16px 16px;
+  background: var(--primary-color);
+  align-items: center;
+}
+.cs-enh .cs-ttl { display: flex; flex-direction: column; min-width: 0; }
+.cs-enh .cs-ttl h3 { font-size: 17px; font-weight: 800; letter-spacing: .2px; }
+.cs-enh .cs-sub { font-size: 11.5px; color: rgba(255,255,255,.78); margin-top: 2px; }
+.cs-enh .confirm-pro-header .fa-times {
+  width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: rgba(255,255,255,.16); font-size: 15px !important;
+}
+
+/* ---- isi (gulir) ---- */
+.cs-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; padding: 14px 0 18px; }
+.cs-body > * { max-width: 560px; margin-left: auto; margin-right: auto; }
+
+.cs-hero {
+  display: flex; align-items: center; gap: 13px; margin: 0 16px 14px; padding: 14px;
+  background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px;
+}
+.cs-hero[hidden] { display: none; }
+.cs-hero-ic { width: 48px; height: 48px; border-radius: 14px; flex: 0 0 48px; display: flex; align-items: center; justify-content: center; background: var(--primary-light); color: var(--primary-color); font-size: 20px; }
+.cs-hero-tx { min-width: 0; flex: 1; }
+.cs-hero-k { font-size: 10.5px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--text-sub); }
+.cs-hero-t { font-size: 15.5px; font-weight: 800; color: var(--text-main); line-height: 1.3; margin-top: 2px; word-break: break-word; }
+.cs-hero-s { font-size: 12px; color: var(--text-sub); margin-top: 3px; word-break: break-all; }
+.cs-chip { flex: 0 0 auto; font-size: 10.5px; font-weight: 800; color: #15803d; background: rgba(34,197,94,.13); border-radius: 999px; padding: 5px 9px; white-space: nowrap; }
+
+.cs-sec { margin: 16px 16px 8px; font-size: 11px; font-weight: 900; letter-spacing: .7px; text-transform: uppercase; color: var(--text-sub); }
+.cs-enh .invoice-box { margin: 0 16px; background: var(--bg-card); border-radius: 16px; padding: 4px 16px; border: 1px solid var(--border-color); }
+.cs-enh .inv-row { padding: 12px 0; align-items: flex-start; gap: 14px; }
+.cs-enh .inv-label { flex: 0 0 auto; font-size: 12.5px; }
+.cs-enh .inv-val { font-size: 13.5px; max-width: 64%; }
+.cs-enh .buyer-info-row .inv-val { font-weight: 600; color: var(--text-sub); font-size: 13px; }
+.cs-enh .buyer-info-divider { display: none; }
+.cs-enh .rincian-promo-box { margin: 0 16px; }
+.cs-enh .rincian-promo-box input { border-radius: 12px; padding: 13px 14px; font-size: 14px; }
+.cs-enh .rincian-promo-box button { border-radius: 12px; padding: 0 18px; }
+.cs-enh .metode-row-card { margin: 0 16px; background: var(--bg-card); border-radius: 16px; padding: 13px 15px; border: 1px solid var(--border-color); }
+.cs-enh .metode-row-card .metode-icon { width: 40px; height: 40px; border-radius: 12px; font-size: 17px; }
+.cs-enh .metode-row-card .metode-name { font-size: 14px; }
+.cs-enh .metode-row-card .metode-sub { font-size: 11px; letter-spacing: .2px; }
+
+/* ---- footer: total + bayar, selalu terlihat ---- */
+.cs-foot {
+  flex: 0 0 auto; background: var(--bg-card); border-top: 1px solid var(--border-color);
+  padding: 12px 16px calc(14px + env(safe-area-inset-bottom, 0px));
+}
+.cs-foot > * { max-width: 560px; margin-left: auto; margin-right: auto; }
+.cs-foot .total-section { margin: 0 auto 10px; padding: 0; background: transparent !important; border: 0 !important; border-radius: 0; }
+.cs-foot .total-label { font-size: 13px; color: var(--text-sub); font-weight: 700; }
+.cs-foot .total-val { font-size: 24px; font-weight: 900; letter-spacing: -.3px; }
+.cs-foot .btn-pay-pro { display: block; margin: 0 auto !important; width: 100%; padding: 16px; border-radius: 14px; font-size: 15px; font-weight: 800; letter-spacing: .4px; box-shadow: none; }
+.cs-secure { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 10px auto 0; font-size: 11px; color: var(--text-sub); text-align: center; line-height: 1.4; }
+.cs-secure i { color: #22c55e; }
+.cs-secure.pin i { color: var(--primary-color); }
+
+/* ---- tablet / desktop: dialog di tengah ---- */
+@media (min-width: 700px) {
+  .confirm-modal-overlay.cs-ov.show { align-items: center; justify-content: center; padding: 24px; background: rgba(8,15,30,.55); }
+  .confirm-box-pro.cs-enh { width: 100%; max-width: 540px; height: auto; max-height: min(92vh, 860px) !important; border-radius: 22px; box-shadow: none; border: 1px solid var(--border-color); transform: none; }
+  .confirm-modal-overlay.cs-ov.show .confirm-box-pro.cs-enh { transform: none; }
+  .cs-enh > .confirm-pro-header { padding-top: 18px; }
+  .cs-foot { padding-bottom: 16px; }
+}
+@media (max-height: 520px) and (orientation: landscape) {
+  .cs-hero { padding: 10px 12px; margin-bottom: 10px; }
+  .cs-secure { display: none; }
+}

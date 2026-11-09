@@ -1,0 +1,267 @@
+/* =====================================================================
+   EWALLET MODERN  —  tampilan toko top-up untuk SEMUA halaman e-wallet
+   (DANA, GoPay Driver, GoPay, OVO, ShopeePay, LinkAja, Astrapay, iSaku,
+    Kaspro, dan Bebas Nominal).
+   - Tanpa tombol "Cek Nomor" (diganti validasi format otomatis + konfirmasi)
+   - Full screen, responsif HP / tablet / laptop, mendukung dark mode
+   ===================================================================== */
+
+/* variabel warna dipasang di :root supaya modal (di luar halaman) ikut kebagian */
+:root {
+  --ew-ok: #16a34a;
+  --ew-bad: #e11d48;
+  --ew-warn-bg: #fff7e6;
+  --ew-warn-bd: #fcd9a0;
+  --ew-warn-tx: #8a5300;
+}
+body.dark-mode {
+  --ew-warn-bg: rgba(245, 158, 11, .12);
+  --ew-warn-bd: rgba(245, 158, 11, .35);
+  --ew-warn-tx: #fbbf24;
+}
+
+[id^="page-ewallet-"] {
+  --ew-r: 16px;
+  --ew-pad: clamp(12px, 3.6vw, 24px);
+  background: var(--bg-body);
+  min-height: 100vh;
+  min-height: 100dvh;
+  /* padding bawah = tinggi footer asli, diatur di responsive-fullwidth.css (--rm-footer-h) */
+}
+
+/* ---------- Header ---------- */
+[id^="page-ewallet-"] > .header-clean {
+  position: sticky; top: 0; z-index: 1000;
+  padding: 14px var(--ew-pad) !important;
+  gap: 14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .12);
+}
+[id^="page-ewallet-"] > .header-clean h1 { font-size: 17px !important; font-weight: 700; letter-spacing: .2px; }
+[id^="page-ewallet-"] > .header-clean .fa-arrow-left { padding: 6px 8px 6px 0; }
+
+/* ---------- Hero ringkas ---------- */
+[id^="page-ewallet-"] .panel-hero { height: auto !important; min-height: 128px; }
+[id^="page-ewallet-"] .hero-overlay {
+  background: linear-gradient(135deg, rgba(8, 20, 50, .55) 0%, rgba(8, 20, 50, .82) 100%) !important;
+}
+[id^="page-ewallet-"] .hero-content {
+  position: relative !important; bottom: auto !important; left: auto !important; right: auto !important;
+  padding: 22px var(--ew-pad) 34px; gap: 14px;
+}
+[id^="page-ewallet-"] .hero-thumb-img {
+  width: 58px; height: 58px; margin: 0 !important; border-radius: 14px; flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .3);
+}
+[id^="page-ewallet-"] .hero-details { min-width: 0; }
+[id^="page-ewallet-"] .hero-details h2 { font-size: 18px; margin: 0 0 4px; }
+
+/* ---------- Konten (kartu menimpa hero) ---------- */
+[id^="page-ewallet-"] .panel-content {
+  position: relative;
+  margin-top: -20px;
+  padding: 18px var(--ew-pad) 0 !important;
+  background: var(--bg-body);
+  border-radius: 22px 22px 0 0;
+  display: flex; flex-direction: column; gap: 14px;
+}
+[id^="page-ewallet-"] .step-box {
+  margin: 0 !important;
+  padding: 18px !important;
+  border-radius: var(--ew-r);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, .05);
+}
+[id^="page-ewallet-"] .step-header { margin-bottom: 14px; }
+[id^="page-ewallet-"] .step-badge { width: 26px; height: 26px; flex-shrink: 0; }
+[id^="page-ewallet-"] .step-title { font-size: 15px; }
+
+/* ---------- Input nomor ---------- */
+.ew-phone-wrap { position: relative; }
+.ew-phone-ico {
+  position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+  color: var(--text-sub); font-size: 18px; pointer-events: none;
+}
+[id^="page-ewallet-"] .panel-input.ew-phone,
+[id^="page-ewallet-"] .panel-input.ew-amount {
+  width: 100%; box-sizing: border-box;
+  padding: 15px 16px 15px 46px;
+  font-size: 18px; font-weight: 600; letter-spacing: .6px;
+  border: 2px solid var(--border-color); border-radius: 14px;
+  transition: border-color .15s, box-shadow .15s;
+}
+[id^="page-ewallet-"] .panel-input.ew-amount { padding-left: 52px; }
+[id^="page-ewallet-"] .panel-input.ew-phone::placeholder,
+[id^="page-ewallet-"] .panel-input.ew-amount::placeholder { font-weight: 400; letter-spacing: 0; font-size: 15px; opacity: .6; }
+[id^="page-ewallet-"] .panel-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(33, 150, 243, .15);
+}
+.ew-phone-wrap.is-ok .ew-phone, .ew-phone-wrap.is-ok .ew-amount { border-color: var(--ew-ok); }
+.ew-phone-wrap.is-bad .ew-phone, .ew-phone-wrap.is-bad .ew-amount { border-color: var(--ew-bad); }
+.ew-amount-rp {
+  position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  font-weight: 700; color: var(--text-sub); font-size: 16px; pointer-events: none;
+}
+
+.ew-hint { min-height: 20px; margin: 8px 2px 0; font-size: 12.5px; line-height: 1.4; color: var(--text-sub); }
+.ew-hint.ok { color: var(--ew-ok); font-weight: 600; }
+.ew-hint.bad { color: var(--ew-bad); }
+
+/* ---------- Pemberitahuan nomor harus benar ---------- */
+.ew-notice {
+  display: flex; gap: 10px; align-items: flex-start;
+  margin-top: 12px; padding: 11px 13px;
+  background: var(--ew-warn-bg); border: 1px solid var(--ew-warn-bd);
+  color: var(--ew-warn-tx); border-radius: 12px;
+  font-size: 12.5px; line-height: 1.5;
+}
+.ew-notice > i { margin-top: 2px; font-size: 15px; flex-shrink: 0; }
+.ew-notice b { font-weight: 700; }
+.ew-notice-modal { margin: 0 16px 6px; }
+
+/* Cek-nomor lama disembunyikan (sudah tidak dipakai) */
+[id^="page-ewallet-"] [id$="UserInfo"],
+[id^="page-ewallet-"] [id^="btnCheck"] { display: none !important; }
+
+/* ---------- Grid nominal ---------- */
+[id^="page-ewallet-"] .prod-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important; padding: 2px 0 !important;
+}
+[id^="page-ewallet-"] .prod-card {
+  min-height: 78px !important; padding: 14px 10px !important;
+  border: 2px solid var(--border-color) !important; border-radius: 14px !important;
+  box-shadow: none !important; justify-content: center !important;
+  transition: border-color .15s, background .15s, transform .12s !important;
+}
+[id^="page-ewallet-"] .prod-card:active { transform: scale(.97); }
+[id^="page-ewallet-"] .prod-card i.fas,
+[id^="page-ewallet-"] .prod-card > div > i.fas { display: none !important; }
+[id^="page-ewallet-"] .prod-card > div { gap: 2px; }
+[id^="page-ewallet-"] .prod-name { font-size: 14px !important; font-weight: 700 !important; color: var(--text-main); }
+[id^="page-ewallet-"] .prod-price { font-size: 13px !important; font-weight: 700; color: var(--primary-color); margin-top: 2px; }
+[id^="page-ewallet-"] .prod-card.selected {
+  border-color: var(--primary-color) !important;
+  background: rgba(33, 150, 243, .09) !important;
+  transform: none !important;
+}
+[id^="page-ewallet-"] .prod-card.selected::after {
+  content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+  position: absolute; top: 0; right: 0;
+  width: 26px; height: 22px; display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: #fff; background: var(--primary-color);
+  border-radius: 0 10px 0 12px;
+}
+
+/* ---------- Metode pembayaran ---------- */
+[id^="page-ewallet-"] .metode-row-card { border-radius: 14px; }
+
+/* ---------- Footer lengket ---------- */
+[id^="page-ewallet-"] .sticky-footer {
+  padding: 12px var(--ew-pad) calc(12px + env(safe-area-inset-bottom, 0px)) !important;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, .1) !important;
+  gap: 8px !important;
+}
+[id^="page-ewallet-"] .footer-alert { border-radius: 10px; font-size: 12.5px; padding: 9px 12px; }
+[id^="page-ewallet-"] .f-price { font-size: 20px; }
+[id^="page-ewallet-"] .footer-action { gap: 12px; }
+[id^="page-ewallet-"] .btn-buy {
+  flex-shrink: 0; padding: 14px 26px !important; border-radius: 14px !important; font-size: 14px;
+}
+
+/* ---------- Modal konfirmasi ---------- */
+.ew-inv-name { display: none !important; }              /* tanpa nama pemilik (tidak ada cek nomor) */
+.ew-inv-phone { flex-direction: column; align-items: flex-start !important; gap: 4px; padding: 12px 0 !important; }
+.ew-inv-phone .inv-val {
+  max-width: 100%; text-align: left; font-size: 22px; font-weight: 800;
+  letter-spacing: 1.2px; color: var(--primary-color);
+  font-variant-numeric: tabular-nums;
+}
+.confirm-box-pro { max-height: 92vh; max-height: 92dvh; overflow-y: auto; }
+.confirm-box-pro .btn-pay-pro { margin-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+
+/* =====================================================================
+   BEBAS NOMINAL — alur sederhana: e-wallet → nomor → nominal → bayar
+   ===================================================================== */
+.ew-provider-grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;
+}
+.ew-provider {
+  position: relative; cursor: pointer; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 14px 6px 12px; border-radius: 14px;
+  background: var(--bg-card); border: 2px solid var(--border-color);
+  transition: border-color .15s, background .15s, transform .12s;
+  -webkit-tap-highlight-color: transparent;
+}
+.ew-provider:active { transform: scale(.96); }
+.ew-provider .ew-logo {
+  width: 46px; height: 46px; border-radius: 12px; object-fit: contain;
+  background: #fff; padding: 4px; box-sizing: border-box; border: 1px solid var(--border-color);
+}
+.ew-provider .ew-logo-txt {
+  width: 46px; height: 46px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 800; font-size: 18px; background: var(--primary-color);
+}
+.ew-provider .ew-pname { font-size: 12.5px; font-weight: 700; color: var(--text-main); line-height: 1.25; word-break: break-word; }
+.ew-provider.selected { border-color: var(--primary-color); background: rgba(33, 150, 243, .09); }
+.ew-provider.selected::after {
+  content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+  position: absolute; top: 0; right: 0; width: 24px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: #fff; background: var(--primary-color); border-radius: 0 10px 0 11px;
+}
+
+.ew-chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+.ew-chip {
+  padding: 13px 4px; text-align: center; cursor: pointer;
+  font-weight: 700; font-size: 14px; color: var(--text-main);
+  background: var(--bg-card); border: 2px solid var(--border-color); border-radius: 12px;
+  transition: border-color .15s, background .15s, transform .12s;
+  -webkit-tap-highlight-color: transparent; user-select: none;
+}
+.ew-chip:active { transform: scale(.96); }
+.ew-chip.active { border-color: var(--primary-color); background: rgba(33, 150, 243, .09); color: var(--primary-color); }
+.ew-label { display: block; font-size: 12.5px; color: var(--text-sub); margin: 2px 2px 8px; font-weight: 600; }
+
+.ew-summary {
+  margin-top: 14px; padding: 14px 16px; border-radius: 14px;
+  background: rgba(33, 150, 243, .07); border: 1px dashed rgba(33, 150, 243, .4);
+}
+.ew-sum-row { display: flex; justify-content: space-between; gap: 10px; font-size: 13.5px; padding: 4px 0; color: var(--text-sub); }
+.ew-sum-row b { color: var(--text-main); font-weight: 700; text-align: right; }
+.ew-sum-total { margin-top: 6px; padding-top: 10px; border-top: 1px dashed var(--border-color); font-size: 15px; }
+.ew-sum-total b { font-size: 19px; color: var(--primary-color); }
+
+/* ---------- Responsif ---------- */
+@media (min-width: 420px) {
+  .ew-provider-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (min-width: 600px) {
+  [id^="page-ewallet-"] .prod-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  .ew-chips { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+@media (min-width: 760px) {
+  [id^="page-ewallet-"] .prod-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+  .ew-provider-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  [id^="page-ewallet-"] .hero-thumb-img { width: 70px; height: 70px; }
+  [id^="page-ewallet-"] .hero-details h2 { font-size: 21px; }
+}
+@media (min-width: 1100px) {
+  [id^="page-ewallet-"] .prod-grid { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 340px) {
+  [id^="page-ewallet-"] .step-box { padding: 14px !important; }
+  [id^="page-ewallet-"] .btn-buy { padding: 13px 16px !important; font-size: 13px; }
+  .ew-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-height: 480px) and (orientation: landscape) {
+  [id^="page-ewallet-"] .panel-hero { min-height: 96px; }
+  [id^="page-ewallet-"] .hero-content { padding-top: 12px; padding-bottom: 28px; }
+}
+
+/* Footer lengket: selalu penuh lebar layar (tidak dipusatkan) */
+html[data-rm="md"] body [id^="page-ewallet-"] .sticky-footer,
+html[data-rm="lg"] body [id^="page-ewallet-"] .sticky-footer { max-width: 100vw; }

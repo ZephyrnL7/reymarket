@@ -1,0 +1,73 @@
+/* ===== NOKOS: PILIH PROVIDER + PROVIDER 2 (memakai variabel tema yang sama dengan style.css) ===== */
+
+/* ---------- halaman pilih provider ---------- */
+.nkp-wrap { width: 100%; max-width: none; margin: 0; }
+.nkp-head { margin: 4px 2px 16px; }
+.nkp-head h2 { margin: 0 0 5px; font-size: 19px; font-weight: 700; letter-spacing: -.2px; color: var(--text-main); }
+.nkp-head p { margin: 0; font-size: 12.5px; line-height: 1.55; color: var(--text-sub); }
+/* layar lebar: kartu berdampingan memenuhi lebar; layar sempit: otomatis tersusun ke bawah */
+.nkp-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 12px; margin-bottom: 16px; }
+.nkp-card {
+    display: flex; align-items: center; gap: 14px; width: 100%; min-width: 0; box-sizing: border-box; text-align: left; cursor: pointer;
+    padding: 16px; border-radius: 18px; font-family: inherit; color: var(--text-main);
+    background: var(--bg-card); border: 1px solid var(--border-color);
+    box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 10px 26px -14px rgba(15,23,42,.16);
+    transition: border-color .15s, box-shadow .15s, transform .1s;
+}
+.nkp-card:hover { border-color: rgba(33,150,243,.5); box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 14px 30px -14px rgba(33,150,243,.3); }
+.nkp-card:active { transform: scale(.985); }
+.nkp-card.off, .nkp-card:disabled { opacity: .55; cursor: not-allowed; box-shadow: none; transform: none; border-color: var(--border-color); }
+.nkp-ico {
+    flex-shrink: 0; width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center;
+    font-size: 22px; color: var(--primary-color); background: rgba(33,150,243,.12);
+}
+.nkp-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.nkp-title { font-size: 15.5px; font-weight: 700; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.nkp-new { font-style: normal; font-size: 10.5px; font-weight: 700; background: rgba(39,174,96,.13); color: #1e9d57; padding: 2px 8px; border-radius: 999px; }
+.nkp-desc { font-size: 12.5px; line-height: 1.5; color: var(--text-sub); }
+.nkp-state { font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; }
+.nkp-state.ok { color: #1e9d57; }
+.nkp-state.busy { color: #e08a00; }
+.nkp-state.closed { color: #e74c3c; }
+.nkp-arrow { flex-shrink: 0; color: var(--text-sub); font-size: 13px; opacity: .7; }
+.nkp-note {
+    display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; border-radius: 16px;
+    background: var(--bg-card); border: 1px solid var(--border-color);
+}
+.nkp-note > div { display: flex; align-items: flex-start; gap: 11px; font-size: 12.5px; line-height: 1.55; color: var(--text-sub); }
+.nkp-note i { flex-shrink: 0; width: 16px; margin-top: 3px; text-align: center; color: var(--primary-color); font-size: 13px; }
+
+/* ---------- Provider 2 ---------- */
+.n2-step {
+    display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; margin-right: 6px;
+    border-radius: 50%; background: var(--primary-color); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 0;
+}
+.n2-summary { font-size: 12.5px; color: var(--text-sub); margin: -2px 0 10px; line-height: 1.5; }
+.n2-summary b { color: var(--text-main); }
+.n2-offers { display: flex; flex-direction: column; gap: 8px; }
+.n2-offers > :not(.n2-offer) { width: 100%; }
+.n2-offer {
+    display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; cursor: pointer;
+    padding: 12px 14px; border-radius: 14px; font-family: inherit; color: var(--text-main);
+    background: var(--bg-body); border: 1.5px solid var(--border-color); transition: border-color .15s, box-shadow .15s, transform .1s;
+}
+.n2-offer:hover { border-color: var(--primary-color); box-shadow: 0 4px 14px rgba(33,150,243,.12); }
+.n2-offer:active { transform: scale(.985); border-color: var(--primary-color); }
+.n2-offer-ico { flex-shrink: 0; width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--bg-card); font-size: 20px; }
+.n2-offer-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.n2-offer-info b { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.n2-offer-info small { font-size: 11.5px; color: var(--text-sub); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.n2-best { font-style: normal; font-size: 10px; font-weight: 800; letter-spacing: .3px; text-transform: uppercase; background: rgba(39,174,96,.14); color: #27ae60; padding: 2px 7px; border-radius: 999px; margin-left: 6px; vertical-align: 1px; }
+.n2-offer-price { flex-shrink: 0; display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 15px; color: var(--primary-color); white-space: nowrap; }
+.n2-offer-price i { font-size: 11px; color: var(--text-sub); }
+
+/* langkah di kartu pesanan aktif */
+.n2-steps { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+.n2-steps span {
+    font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+    background: var(--bg-body); color: var(--text-sub); border: 1px solid var(--border-color);
+}
+.n2-steps span.done { color: #27ae60; border-color: rgba(39,174,96,.35); }
+.n2-steps span.now { background: var(--primary-color); border-color: var(--primary-color); color: #fff; }
+.nokos-card.done .n2-steps span.now { background: #2ecc71; border-color: #2ecc71; }
+@media (max-width: 340px) { .n2-offer { padding: 10px 11px; gap: 9px; } .n2-offer-price { font-size: 14px; } }

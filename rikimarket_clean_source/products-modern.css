@@ -1,0 +1,311 @@
+/* =====================================================================
+   PRODUCTS MODERN — tampilan seragam untuk semua halaman produk
+   (Panel, Script, Kelas Murid, VPS, Subdomain, Sosmed, Game FF/ML,
+    Topup Game, Pulsa/Data, Aplikasi Premium). E-wallet tetap pakai
+    ewallet-modern.css.
+   Aturan: SATU warna aksen (var(--primary-color)), tanpa warna campur.
+   Hanya mengubah tampilan, tidak mengubah fungsi/ID/event apa pun.
+   ===================================================================== */
+
+:root {
+  --pm-tint: rgba(33, 150, 243, .09);
+  --pm-tint-2: rgba(33, 150, 243, .16);
+  --pm-ring: rgba(33, 150, 243, .18);
+  --pm-r: 16px;
+}
+body.dark-mode {
+  --pm-tint: rgba(100, 181, 246, .12);
+  --pm-tint-2: rgba(100, 181, 246, .2);
+  --pm-ring: rgba(100, 181, 246, .25);
+}
+
+/* ---------- Kerangka halaman ---------- */
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) {
+  --pm-pad: clamp(12px, 3.6vw, 24px);
+  background: var(--bg-body);
+  min-height: 100vh;
+  min-height: 100dvh;
+  /* padding bawah = tinggi footer asli, diatur di responsive-fullwidth.css (--rm-footer-h) */
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) > .header-clean {
+  position: sticky; top: 0; z-index: 1000;
+  padding: 14px var(--pm-pad) !important;
+  gap: 14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .12);
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) > .header-clean h1 { font-size: 17px !important; font-weight: 700; letter-spacing: .2px; }
+
+/* ---------- Hero ringkas ---------- */
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .panel-hero { height: auto !important; min-height: 120px; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .hero-overlay {
+  background: linear-gradient(135deg, rgba(8, 20, 50, .55) 0%, rgba(8, 20, 50, .82) 100%) !important;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .hero-content {
+  position: relative !important; bottom: auto !important; left: auto !important; right: auto !important;
+  padding: 20px var(--pm-pad) 34px; gap: 14px;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .hero-thumb-img {
+  width: 56px; height: 56px; margin: 0 !important; border-radius: 14px; flex-shrink: 0;
+  object-fit: cover; box-shadow: 0 4px 14px rgba(0, 0, 0, .3);
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .hero-details { min-width: 0; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .hero-details h2 { font-size: 18px; margin: 0 0 6px; }
+
+/* ---------- Konten (kartu menimpa hero) ---------- */
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .panel-content {
+  position: relative;
+  margin-top: -20px;
+  padding: 18px var(--pm-pad) 0 !important;
+  background: var(--bg-body);
+  border-radius: 22px 22px 0 0;
+  display: flex; flex-direction: column; gap: 14px;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .step-box {
+  margin: 0 !important;
+  padding: 18px !important;
+  border-radius: var(--pm-r);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, .05);
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .step-header { margin-bottom: 4px; align-items: center; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .step-badge { width: 26px; height: 26px; flex-shrink: 0; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .step-title { font-size: 15px; font-weight: 700; }
+.pm-hint {
+  margin: 0 0 14px 36px; font-size: 12.5px; line-height: 1.45; color: var(--text-sub);
+}
+
+/* ---------- Input & form ---------- */
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .panel-input, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .form-input-game {
+  width: 100%; box-sizing: border-box;
+  padding: 14px 16px; font-size: 15px;
+  border: 2px solid var(--border-color) !important; border-radius: 14px !important;
+  background: var(--bg-body); color: var(--text-main);
+  transition: border-color .15s, box-shadow .15s;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .panel-input:focus, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .form-input-game:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 4px var(--pm-ring);
+  outline: none;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .panel-input::placeholder, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .form-input-game::placeholder { opacity: .6; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .form-group-pro { margin-bottom: 14px; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .form-group-pro label { font-size: 12.5px; font-weight: 600; margin-bottom: 6px; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) select.panel-input { appearance: none; -webkit-appearance: none; background-image:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+
+/* ---------- Grid produk ---------- */
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-grid, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .product-grid-game {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important; padding: 2px 0 !important;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-card, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .game-item-card {
+  position: relative !important;
+  min-height: 128px !important; padding: 16px 10px 14px !important;
+  background: var(--bg-card) !important;
+  border: 2px solid var(--border-color) !important; border-radius: 14px !important;
+  box-shadow: none !important; justify-content: center !important;
+  transform: none !important;
+  transition: border-color .15s, background .15s, transform .12s !important;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-card:active, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .game-item-card:active { transform: scale(.97) !important; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-card > div { gap: 3px; width: 100%; }
+
+/* Ikon produk: satu warna, kotak lembut */
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-card i.fas {
+  width: 42px !important; height: 42px !important; margin: 0 auto 8px !important;
+  display: flex !important; align-items: center; justify-content: center;
+  font-size: 18px !important; border-radius: 12px !important;
+  background: var(--pm-tint); color: var(--primary-color) !important;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-card img { width: 42px !important; height: 42px !important; border-radius: 12px !important; }
+
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-name { font-size: 13.5px !important; font-weight: 700 !important; margin-bottom: 4px !important; color: var(--text-main) !important; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-card span[style*="color:#666"], :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-card span[style*="font-size:10px"] {
+  font-size: 11px !important; color: var(--text-sub) !important; font-weight: 500 !important; line-height: 1.35 !important;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-price { font-size: 14.5px !important; font-weight: 800 !important; color: var(--primary-color) !important; padding-top: 8px !important; }
+
+/* Badge: netral & seragam */
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .badge-ready {
+  background: var(--pm-tint); color: var(--primary-color);
+  font-size: 10px; font-weight: 700; letter-spacing: .3px;
+  padding: 3px 9px; border-radius: 999px; margin: 4px 0 0;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .badge-habis {
+  background: rgba(148, 163, 184, .18); color: var(--text-sub);
+  font-size: 10px; font-weight: 700; letter-spacing: .3px;
+  padding: 3px 9px; border-radius: 999px; margin: 4px 0 0;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .badge-new-item {
+  background: var(--primary-color) !important; animation: none !important;
+  top: 8px !important; left: 8px !important; border-radius: 999px !important;
+  padding: 2px 8px !important; box-shadow: none !important;
+}
+
+/* Terpilih */
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-card.selected, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .game-item-card.selected, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .game-item-card.active {
+  border-color: var(--primary-color) !important;
+  background: var(--pm-tint) !important;
+  transform: none !important;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-card.selected::after {
+  content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+  position: absolute; top: 0; right: 0;
+  width: 26px; height: 22px; display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: #fff; background: var(--primary-color);
+  border-radius: 0 10px 0 12px;
+}
+/* Habis */
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-card.disabled {
+  opacity: .55 !important; filter: none !important; background: var(--bg-card) !important;
+  border-color: var(--border-color) !important; pointer-events: none;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-card.disabled .prod-price { color: var(--text-sub) !important; text-decoration: none; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-card.disabled i.fas { background: rgba(148, 163, 184, .18); color: var(--text-sub) !important; }
+
+/* ---------- Tab game (Diamond / Membership) ---------- */
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .game-tab-container {
+  display: flex; gap: 6px; padding: 4px; margin-bottom: 14px;
+  background: var(--bg-body); border: 1px solid var(--border-color); border-radius: 14px;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .game-tab-btn {
+  flex: 1; padding: 11px 8px; font-size: 13.5px; font-weight: 700;
+  border: 0 !important; border-radius: 10px; background: transparent; color: var(--text-sub);
+  transition: background .15s, color .15s;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .game-tab-btn.active { background: var(--primary-color); color: #fff; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .game-tab-btn i { margin-right: 6px; }
+
+/* ---------- Baris pilihan (metode bayar, aplikasi premium) ---------- */
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .metode-row-card {
+  border-radius: 14px; border: 2px solid var(--border-color);
+  padding: 13px 14px; background: var(--bg-card);
+  transition: border-color .15s, background .15s;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .metode-row-card:active { background: var(--pm-tint); }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .metode-row-card .metode-icon {
+  background: var(--pm-tint); color: var(--primary-color); border-radius: 12px; overflow: hidden;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .metode-row-card .metode-name { font-size: 14px; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .metode-row-card .metode-sub { letter-spacing: .3px; font-size: 11.5px; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) #premiumAppGrid { display: flex; flex-direction: column; gap: 10px; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) #premiumAppGrid .metode-row-card { margin: 0; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) #premiumAppGrid [style*="color:#f97316"] { color: var(--primary-color) !important; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) #premiumAppGrid [style*="color:#e74c3c"] { color: var(--text-sub) !important; }
+
+/* ---------- Topup game & pulsa ---------- */
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .game-grid-display { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .game-card-select {
+  border: 2px solid var(--border-color) !important; border-radius: 14px !important;
+  box-shadow: none !important; background: var(--bg-card);
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .game-card-select.selected { border-color: var(--primary-color) !important; background: var(--pm-tint); }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .pay-method-item { border-radius: 14px; border: 2px solid var(--border-color); }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .pay-method-item.active { border-color: var(--primary-color); background: var(--pm-tint); }
+
+/* ---------- Footer lengket ---------- */
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .sticky-footer {
+  padding: 12px var(--pm-pad) calc(12px + env(safe-area-inset-bottom, 0px)) !important;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, .1) !important;
+  gap: 8px !important;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .footer-alert {
+  border-radius: 10px; font-size: 12.5px; padding: 9px 12px;
+  background: var(--pm-tint) !important; color: var(--text-main) !important;
+  border: 1px solid var(--pm-tint-2);
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .footer-alert i { color: var(--primary-color); }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .f-price { font-size: 20px; font-weight: 800; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .footer-action { gap: 12px; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .btn-buy { padding: 14px 24px !important; border-radius: 14px !important; font-size: 14px; font-weight: 700; }
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .btn-buy:not(.active):disabled { background: rgba(148, 163, 184, .45) !important; }
+/* tombol Perpanjang (panel) ikut satu warna, tampil sebagai outline */
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) #btnExtend {
+  background: transparent !important; color: var(--primary-color) !important;
+  border: 2px solid var(--primary-color) !important; cursor: pointer;
+}
+
+/* ---------- Modal konfirmasi (dipakai semua produk) ---------- */
+.confirm-box-pro { max-height: 92vh; max-height: 92dvh; overflow-y: auto; }
+.confirm-box-pro .btn-pay-pro { margin-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+
+/* ---------- Responsif ---------- */
+@media (min-width: 600px) {
+  :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-grid, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .product-grid-game { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .game-grid-display { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (min-width: 760px) {
+  :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-grid, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .product-grid-game { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+  :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .hero-thumb-img { width: 68px; height: 68px; }
+  :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .hero-details h2 { font-size: 21px; }
+}
+@media (min-width: 1100px) {
+  :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .prod-grid, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .product-grid-game { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 340px) {
+  :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .step-box { padding: 14px !important; }
+  :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .btn-buy { padding: 13px 14px !important; font-size: 13px; }
+  .pm-hint { margin-left: 0; }
+}
+@media (max-height: 480px) and (orientation: landscape) {
+  :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .panel-hero { min-height: 92px; }
+  :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .hero-content { padding-top: 12px; padding-bottom: 28px; }
+}
+/* Footer lengket: selalu penuh lebar layar (tidak dipusatkan) */
+html[data-rm="md"] body :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .sticky-footer,
+html[data-rm="lg"] body :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) .sticky-footer { max-width: 100vw; }
+
+/* =====================================================================
+   HALAMAN ORDER SUKSES — gaya sama dengan "Deposit Berhasil",
+   satu warna (hijau sukses) + netral, tanpa emoji / ikon warna-warni.
+   ===================================================================== */
+#page-order-sukses { --os-ok: #16a34a; --os-ok-soft: rgba(22, 163, 74, .1); background: var(--bg-body); }
+#page-order-sukses .os-wrap { max-width: 460px; margin: 0 auto; padding: 36px 20px 130px; text-align: center; animation: osIn .45s ease both; }
+@keyframes osIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+#page-order-sukses .os-check {
+  width: 84px; height: 84px; margin: 0 auto 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--os-ok-soft); box-shadow: 0 0 0 10px rgba(22, 163, 74, .06);
+}
+#page-order-sukses .os-check svg { width: 44px; height: 44px; }
+#page-order-sukses .os-check path { stroke-dasharray: 40; stroke-dashoffset: 40; animation: osDraw .5s .2s ease forwards; }
+@keyframes osDraw { to { stroke-dashoffset: 0; } }
+#page-order-sukses #osJudul { color: var(--os-ok); font-size: 24px; font-weight: 800; margin: 0; letter-spacing: 1.5px; text-transform: uppercase; text-shadow: none; }
+#page-order-sukses #osSubjudul { color: var(--text-sub); font-size: 14.5px; line-height: 1.5; margin: 10px 0 26px; }
+#page-order-sukses .os-card {
+  text-align: left; background: var(--bg-card); border: 1px solid var(--border-color);
+  border-radius: 18px; padding: 6px 20px 18px; margin-bottom: 22px; box-shadow: 0 2px 14px rgba(0, 0, 0, .05);
+}
+#page-order-sukses .os-card-title { text-align: center; font-size: 16px; font-weight: 700; color: var(--text-main); padding: 16px 0 14px; border-bottom: 2px dashed var(--border-color); margin: 0 0 6px; }
+#page-order-sukses .os-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; padding: 11px 0; font-size: 15px; }
+#page-order-sukses .os-row > span:first-child { color: var(--text-sub); font-weight: 600; flex-shrink: 0; }
+#page-order-sukses .os-row > span:last-child { color: var(--text-main); font-weight: 700; text-align: right; word-break: break-word; max-width: 62%; }
+#page-order-sukses .os-row .os-ok { color: var(--os-ok); }
+#page-order-sukses .os-total { margin-top: 6px; padding-top: 16px; border-top: 2px dashed var(--border-color); align-items: center; }
+#page-order-sukses .os-total > span:first-child { color: var(--text-main); font-size: 16px; font-weight: 800; }
+#page-order-sukses .os-total > span:last-child { color: var(--os-ok); font-size: 21px; font-weight: 800; }
+#page-order-sukses .os-brand h3 { margin: 0 0 4px; font-size: 22px; font-weight: 800; letter-spacing: 2px; color: var(--text-main); text-shadow: none; }
+#page-order-sukses .os-brand p { margin: 0 0 24px; font-size: 11.5px; line-height: 1.6; color: var(--text-sub); font-weight: 600; letter-spacing: .3px; }
+#page-order-sukses .os-actions { display: flex; flex-direction: column; gap: 10px; }
+#page-order-sukses .os-btn {
+  width: 100%; padding: 15px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  text-shadow: none; box-shadow: none; transition: transform .12s, opacity .15s;
+}
+#page-order-sukses .os-btn:active { transform: scale(.98); }
+#page-order-sukses .os-btn-main { background: var(--os-ok) !important; color: #fff !important; border: 2px solid var(--os-ok) !important; box-shadow: 0 4px 14px rgba(22, 163, 74, .28); }
+#page-order-sukses .os-btn-alt { background: transparent !important; color: var(--os-ok) !important; border: 2px solid var(--os-ok) !important; }
+#page-order-sukses .os-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* ---------- Kotak peringatan inline: satu warna seragam ---------- */
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) [style*="#fff8e1"], :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) [style*="#fff3cd"], :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) [style*="#fff9e6"], :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) [style*="#fffbea"], :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) [style*="#fef9e7"], :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) [style*="#fff7e6"] {
+  background: var(--pm-tint) !important;
+  border: 1px solid var(--pm-tint-2) !important;
+  color: var(--text-main) !important;
+  border-radius: 12px !important;
+  padding: 11px 13px !important;
+  font-size: 12.5px !important; line-height: 1.5;
+}
+:is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) [style*="#fff8e1"] i, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) [style*="#fff3cd"] i, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) [style*="#fff9e6"] i, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) [style*="#fffbea"] i, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) [style*="#fef9e7"] i, :is(#page-panel,#page-script,#page-murid,#page-vps,#page-subdomain,#page-sosmed,#page-game-ff,#page-game-ml,#page-topup,#page-topup-pulsa,#page-premium-app,#page-apk) [style*="#fff7e6"] i { color: var(--primary-color) !important; }
